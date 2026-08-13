@@ -4,6 +4,11 @@ while True:
     print("Digite o número do seu CPF:")
     cpf_enviado = input("").strip()
 
+    digito_cpf_repetido = cpf_enviado[0] * len(cpf_enviado)
+
+    if cpf_enviado == digito_cpf_repetido:
+        print("Você digitou números iguais.")
+        continue
 
     if "." in cpf_enviado or "-" in cpf_enviado or " " in cpf_enviado:
         cpf_enviado = cpf_enviado.replace(".", "")
@@ -12,7 +17,7 @@ while True:
         cpf_enviado = cpf_enviado.strip()
 
     if len(cpf_enviado) != 11:
-        print("O CPF deve conter apenas 11 números") 
+        print("O CPF deve conter apenas 11 números")
         continue
 
     elif not cpf_enviado.isdigit():
@@ -38,13 +43,14 @@ while True:
     print(f"- O 1º dígito calculado do CPF é {primeiro_digito}")
 
     # ========== SEGUNDO DIGITO ==========
+
     cpf_incompleto = cpf_para_calculo + str(primeiro_digito)
 
     multiplicador = 11
     soma_vezes10_v2 = 0
 
     for numeros in cpf_incompleto:
-        soma_vezes10_v2 += (int(numeros) * multiplicador)
+        soma_vezes10_v2 += int(numeros) * multiplicador
 
         multiplicador -= 1
 
@@ -59,8 +65,7 @@ while True:
 
     print(f"O CPF calculado é {cpf_calculado}")
     print("")
-
-
+        
     if cpf_calculado == cpf_enviado:
         print("CPF VÁLIDO")
         break
